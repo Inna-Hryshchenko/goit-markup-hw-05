@@ -125,18 +125,6 @@ img {
   margin-right: 50px;
 }
 
-/* .line {
-  height: 4px;
-  border: none;
-  border-radius: 2px;
-  background-color: var(--accent-color);
-  /*opacity: 0;*/
-}
-
-/* .site-nav .link .current .line {
-  opacity: 1;
-}  */
-
 .auth-nav .mail {
   margin-right: 42px;
 }
@@ -287,8 +275,6 @@ img {
   padding-bottom: 244px;
 }
 
-
-
 /*Reautures*/
 
 .reautures {
@@ -354,7 +340,7 @@ img {
 }
 
 .whatwedo-item {
-  position:absolute;
+  position: absolute;
   bottom: 0;
   left: 0;
   margin: 0;
@@ -369,9 +355,8 @@ img {
   text-align: center;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background-color: rgba(47,48,58,80%);
-
+  color: #ffffff;
+  background-color: rgba(47, 48, 58, 80%);
 }
 
 /*Team*/
@@ -591,6 +576,54 @@ img {
   background-color: var(--accent-color);
 }
 
+/* Backdrop */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  width: 528px;
+  height: 521px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 490px;
+  margin-top: 8px;
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.close-item {
+  width: 11px;
+  height: 11px;
+}
+
 /*Portfolio*/
 
 .portfolio .title {
@@ -660,34 +693,47 @@ img {
   margin-bottom: var(--portfolio-item-gap);
 }
 
-.card {
+.card-thumb {
   position: relative;
 }
 
-.card:hover .card-thumb::after,
-.card:focus .card-thumb::after {
-opacity: 1;
+.card-thumb:hover::before,
+.card-thumb:focus::before {
+  opacity: 1;
 }
 
-.card-thumb::after {
- content: 'Технокряк это современная площадка распространения коронавируса. Компании используют эту платформу для цифрового шпионажа и атак на защищённые сервера конкурентов.';
- position: absolute;
- top: 0;
- right: 0;
- opacity: 0;
- overflow: hidden;
- height: 294px;
- background-color: rgba(33, 150, 243, 90%);
- font-weight: normal;
- font-size: 18px;
- line-height: 1.55;
- letter-spacing: 0.03em;
- color: #FFFFFF;
- display: block;
- padding: 63px 63px 24px 24px;
- text-align: left;
+.card-thumb:hover .card-text,
+.card-thumb:focus .card-text {
+  opacity: 1;
 }
 
+.card-thumb::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(33, 150, 243, 90%);
+}
+
+.card-text {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  padding: 63px 24px 63px 24px;
+  text-align: left;
+}
 /* .card-thumb {
   position: relative;
   overflow: hidden;
