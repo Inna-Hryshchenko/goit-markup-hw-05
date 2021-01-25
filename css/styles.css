@@ -10,6 +10,7 @@
   --title-color: #212121;
   --accent-color: #2196f3;
   --portfolio-item-gap: 20px;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -58,6 +59,19 @@ img {
   text-decoration: none;
 }
 
+.current::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(32px);
+  display: inline-block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
 /*Visually hidden for H*/
 .visually-hidden {
   position: absolute;
@@ -79,7 +93,9 @@ img {
   padding-top: 25px;
   padding-bottom: 25px;
 }
+
 /*Logo*/
+
 .logo {
   text-decoration: none;
   color: #000000;
@@ -96,11 +112,6 @@ img {
 }
 
 /*Site nav*/
-
-/*.site-nav {
-  display: flex;
-  align-items: center;
-}*/
 
 .navigation {
   display: flex;
@@ -119,6 +130,10 @@ img {
   font-size: 14px;
   line-height: 1.142;
   letter-spacing: 0.02em;
+}
+
+.snitem {
+  position: relative;
 }
 
 .snitem:not(:last-child) {
@@ -176,7 +191,9 @@ img {
   font-size: 14px;
   line-height: 1.142;
   letter-spacing: 0.02em;
+  transition: color 250ms var(--timing-function);
 }
+
 .site-nav .link:hover,
 .site-nav .link:focus {
   color: var(--accent-color);
@@ -185,6 +202,7 @@ img {
 .auth-nav {
   display: flex;
   align-items: center;
+  transition: color 250ms var(--timing-function);
 }
 
 .auth-nav .anlink:hover,
@@ -237,6 +255,8 @@ img {
   height: 50px;
   min-width: 200px;
   padding: 10px 32px;
+  border-color: transparent;
+  cursor: pointer;
   border-radius: 4px;
   color: #ffffff;
   background-color: var(--accent-color);
@@ -417,6 +437,7 @@ img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
+  transition: background-color 250ms var(--timing-function);
 }
 
 .snetworklist-link:hover .snetworcs-item,
@@ -433,6 +454,7 @@ img {
   width: 20px;
   height: 20px;
   fill: #afb1b8;
+  transition: fill 250ms var(--timing-function);
 }
 
 .position {
@@ -465,6 +487,7 @@ img {
   justify-content: center;
   align-items: center;
   fill: #afb1b8;
+  transition: fill 250ms var(--timing-function);
 }
 
 .clients-list:hover .clients-item,
@@ -585,11 +608,17 @@ img {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms var(--title-color);
 }
 
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.7);
 }
 
 .modal {
@@ -598,7 +627,8 @@ img {
   height: 521px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms var(--timing-function) 250ms;
   background: #ffffff;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -660,6 +690,8 @@ img {
   font-size: 16px;
   line-height: 1.625;
   letter-spacing: 0.03em;
+  transition: background-color 250ms var(--timing-function),
+    color 250ms var(--timing-function);
 }
 
 .filter-item:not(:last-child) {
@@ -695,38 +727,19 @@ img {
 
 .card-thumb {
   position: relative;
-}
-
-.card-thumb:hover::before,
-.card-thumb:focus::before {
-  opacity: 1;
-}
-
-.card-thumb:hover .card-text,
-.card-thumb:focus .card-text {
-  opacity: 1;
-}
-
-.card-thumb::before {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  top: 0;
-  right: 0;
-  opacity: 0;
   overflow: hidden;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(33, 150, 243, 90%);
 }
 
 .card-text {
   position: absolute;
-  display: inline-block;
   top: 0;
   left: 0;
-  opacity: 0;
-  font-weight: normal;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 90%);
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
+  font-weight: 400;
   font-size: 18px;
   line-height: 1.55;
   letter-spacing: 0.03em;
@@ -734,31 +747,11 @@ img {
   padding: 63px 24px 63px 24px;
   text-align: left;
 }
-/* .card-thumb {
-  position: relative;
-  overflow: hidden;
-  }
 
-.card-thumb:hover .card-overlay,
-.card-thumb:focus .card-overlay, {
-  opacity: 1;
-  overflow: visible;
-  height: 294px; 
+.card:hover .card-text,
+.card.focus .card-text {
+  transform: translateY(0%);
 }
-
-.card-overlay {
-  position: absolute;
-  top: 0;
-  right:0;
-  height: 294px;
-  opacity: 0;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 28px;
-  letter-spacing: 0.03em;
-  color: #FFFFFF;
-  background-color: rgba(33, 150, 243, 90%);
-  } */
 
 .card-content {
   padding: 20px 24px;
